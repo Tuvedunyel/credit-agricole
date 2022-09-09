@@ -1,0 +1,350 @@
+@use '../abstracts' as var;
+
+.hero-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var.$gray;
+  gap: 3.1rem;
+
+  @media screen and (min-width: 1200px) {
+    flex-direction: row;
+    align-items: start;
+    gap: 0;
+  }
+
+  .left {
+    max-width: 924px;
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 2.6rem;
+    font-weight: var.$light;
+    width: 90%;
+    margin: 0 auto;
+    gap: 3.3rem;
+    padding-bottom: 9rem;
+
+    @media screen and (min-width: 810px) {
+      align-items: start;
+    }
+
+    @media screen and (min-width: 1200px) {
+      width: 50%;
+      padding-top: 7rem;
+      padding-bottom: 0rem;
+      margin-inline: 0;
+    }
+    h3 {
+      font-size: 3.4rem;
+      font-family: var.$gotham_bold;
+      font-weight: 700;
+      color: var.$green_700;
+      margin-bottom: 4.4rem;
+      background: white;
+      width: 100%;
+
+      @media screen and (min-width: 810px) {
+        text-align: start;
+        alig-self: start;
+        padding: 2rem 8.6rem 2rem 3.6rem ;
+        width: fit-content;
+      }
+
+      @media screen and (min-width: 1200px ) {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  strong {
+    font-family: var.$gotham_bold;
+    font-weight: 700;
+  }
+}
+
+.esperluette {
+  @media screen and (min-width: 1200px) {
+    margin-left: 7rem;
+  }
+}
+
+.first-conference, .second-conference {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.3rem;
+
+  @media screen and (min-width: 810px) {
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    text-align: start;
+
+    .container {
+      width: calc(100% - 25px);
+    }
+
+  }
+
+  @media screen and (min-width: 1200px) {
+    margin-left: 3.1rem;
+  }
+
+  &::before {
+    content: '';
+    background: url('../assets/list-icon.svg');
+    width: 25px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    @media screen and (min-width: 810px) {
+      margin-top: 0.5em;
+    }
+  }
+}
+
+.expertpays {
+  width: 100%;
+  background: var.$green_500;
+  padding-block: 2em;
+  color: white;
+
+  .container-narrow {
+    max-width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+    position: relative;
+
+    @media screen and (min-width: 900px) {
+      width: 75%;
+    }
+    @media screen and (min-width: 1200px) {
+      width: 65%;
+    }
+    @media screen and (min-width: 1400px) {
+      width: 55%;
+    }
+    @media screen and (min-width: 1600px) {
+      width: 50%;
+    }
+
+    h2 {
+      font-size: 2.9rem;
+      font-family: var.$gotham_bold;
+      font-weight: 700;
+      text-align: center;
+      display: block;
+
+      &::after {
+        display: block;
+        content: '';
+        height: 13px;
+        background: white;
+        width: 50%;
+        margin: 1em auto 0;
+      }
+
+    }
+  }
+}
+
+.pin {
+
+  @media screen and (min-width: 1200px) {
+    position: absolute;
+    right: -12%;
+    bottom: 17%;;
+  }
+
+  @media screen and (min-width: 1600px) {
+    right: 4%;
+  }
+}
+
+.select-container {
+  width: 100%;
+  height: fit-content;
+  border-radius: 10px;
+  position: relative;
+
+  @media screen and (min-width: 1600px) {
+    width: 66%;
+  }
+
+
+  .btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    background: white;
+    z-index: 10;
+    height: 64px;
+    width: 64px;
+    pointer-events: none;
+    border-left: 1px solid var.$green_500;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .arrow-btn {
+    width: 0;
+    height: 0;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-top: 11px solid var.$green_500;
+    margin: auto;
+  }
+}
+
+select {
+  width: 100%;
+  height: 64px;
+  padding-left: 0.5em;
+  background: white;
+  border: none;
+  border-radius: 10px;
+}
+
+.experts {
+  margin-top: 5rem !important;
+}
+
+.expert {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  text-align: center;
+
+  &.active {
+    display: flex;
+  }
+
+  h2 {
+    font-size: 2.9rem;
+    font-family: var.$gotham_bold;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.5rem;
+
+    &::after {
+      display: none !important;
+      content: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      background: transparent !important;
+    }
+  }
+
+  h3 {
+    font-size: 2.3rem;
+    font-weight: var.$light;
+    text-align: center;
+    margin-bottom: 3.9rem;
+  }
+
+  p {
+    margin-bottom: 2.7rem;
+  }
+}
+
+.thumbnail {
+  width: 242px;
+  height: 242px;
+  margin-bottom: 2.5rem;
+  display: block;
+}
+
+.fields {
+  label {
+    display: none !important;
+  }
+
+  .fieldCalendar {
+    display: none;
+  }
+
+  .fieldCalendarService {
+    display: none;
+  }
+
+  .slots span {
+    display: none;
+  }
+}
+
+#fbuilder .slots {
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#fbuilder .fields, #fbuilder .fform {
+  padding: 0;
+}
+
+#cp_appbooking_pform_1 {
+  height: fit-content;
+}
+
+.slots > br:nth-child(2) {
+  display: none;
+}
+
+#formheader_1 {
+  display: none;
+}
+
+#fbuilder .slots .availableslot {
+  background: white;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  flex: 83px;
+  width: 83px;
+
+  a {
+    color: black;
+    width: 100%;
+    padding: 1.4rem 2.9rem;
+    background: transparent;
+    font-size: 2rem;
+    font-weight: var.$light;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+      background: var.$green_300;
+      color: white;
+    }
+  }
+}
+
+.usedSlots {
+  display: none !important;
+}

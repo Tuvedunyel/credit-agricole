@@ -1,0 +1,59 @@
+@use '../abstracts' as var;
+
+header {
+  display: grid;
+  grid-template-columns: 0.4fr 1fr;
+  justify-items: start;
+  align-items: center;
+
+  @media screen and (min-width: 740px) {
+    display: flex;
+  }
+
+  .titles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+
+    @media screen and (min-width: 1224px) {
+      width: calc(100% - (190px + 44px * 2));
+    }
+  }
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media screen and (min-width: 1224px) {
+    width: calc(190px + 44px * 2);
+  }
+}
+
+
+h1 {
+  font-size: 1.6rem;
+  font-family: var.$gotham_black;
+  font-weight: 400;
+  color: white;
+  background: var.$green_500;
+  width: 100%;
+  padding: 1.2rem 1.5rem;
+
+  @media screen and (min-width: 642px) {
+    padding: 2.5rem 3.1rem;
+    font-size: 2rem;
+  }
+}
+
+h2 {
+  font-size: 1.6rem;
+  font-weight: var.$light;
+  padding: 1rem 1.5rem;
+
+  @media screen and (min-width: 642px) {
+    padding: 1.9rem 3.1rem;
+    font-size: 2rem;
+  }
+}

@@ -2,3 +2,9 @@
 @use "abstracts" as var;
 @use "components";
 @use "layout";
+
+body {
+  font-family: var.$gotham;
+  font-weight: var.$light;
+  font-size: 2rem;
+}
