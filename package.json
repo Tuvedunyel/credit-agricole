@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/Tuvedunyel/startertheme#readme",
   "devDependencies": {
-    "sass": "^1.44.0"
+    "sass": "^1.54.9"
   }
 }
