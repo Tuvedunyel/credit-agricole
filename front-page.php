@@ -88,7 +88,7 @@
                         if( expert.classList.contains(e.target.value) ) {
                             expert.classList.add('active')
                             this.slots = document.querySelectorAll('.availableslot > a');
-                            this.slots.textContent = this.slots.textContent.slice(0, 2) + 'h'
+                            this.slots = this.slots.forEach( slot => slot.textContent = slot.textContent.slice(0,2) + 'h' )
                         }
                     })
                 }
