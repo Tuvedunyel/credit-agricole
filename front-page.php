@@ -1,5 +1,5 @@
 <?php get_header();
-  $id_array = array();
+$id_array = array();
 ?>
 
 <main class="front-page" id="root">
@@ -47,24 +47,83 @@
 
         if ($query->have_posts()) : ?>
             <div class="experts container-narrow">
-                <?php while( $query->have_posts() ) : $query->the_post();
-                $data = new stdClass();
-                $data->id = get_the_ID();
-                $data->pays = get_field('pays');
-                array_push($id_array, $data) ?>
+                <?php while ($query->have_posts()) : $query->the_post();
+                    $data = new stdClass();
+                    $data->id = get_the_ID();
+                    $data->pays = get_field('pays');
+                    array_push($id_array, $data) ?>
                     <div class="expert <?= get_the_ID(); ?>">
                         <div class="thumbnail">
                             <?php the_post_thumbnail('full'); ?>
                         </div>
-                        <div class="content">
+                        <div :class=" switchBtn ?  'content active' : 'content' ">
                             <h2><?php the_title(); ?></h2>
                             <?php the_content(); ?>
+                            <button class="pbSubmit perso-btn" @click="handleSwitchBtn()">Réserver mon
+                                entretien
+                            </button>
                         </div>
                     </div>
                 <?php endwhile; ?>
             </div>
-        <?php wp_reset_postdata(); endif; ?>
+            <?php wp_reset_postdata(); endif; ?>
     </section>
+    <section class="conferences-generals">
+        <div class="container-narrow">
+            <h2>Inscription aux conférences <span class="border"></span></h2>
+            <?php if (have_rows('conferences')) : ?>
+                <div class="conférences">
+                    <?php while (have_rows('conferences')) : the_row(); ?>
+                        <article>
+                            <div class="thumbnail">
+                                <?php $image_conf = get_sub_field('image') ?>
+                                <img src="<?= esc_url($image_conf['url']); ?> ?>" alt="<?= esc_attr($image_conf['alt']);
+                                ?>>">
+                            </div>
+                            <div class="titles">
+                                <?php if (get_sub_field('titre_normal') === 'Oui') : ?>
+                                    <h3 class="regular"><?php the_sub_field('titre_petit'); ?></h3>
+                                <?php endif; ?>
+                                <h3><?php the_sub_field('titre'); ?></h3>
+                            </div>
+                            <div class="content">
+                                <div class="txt">
+                                    <?php the_sub_field('texte'); ?>
+                                </div>
+                                <div class="link">
+                                    <p class="date-conference"><?php the_sub_field('date'); ?></p>
+                                    <?php $lien = get_sub_field('lien_conference');
+                                    $lien_target = $lien['target'] ? $lien['target'] : '_self';
+                                    ?>
+                                    <a href="<?= esc_url($lien['url']); ?>" target="<?= esc_attr($lien_target); ?>"
+                                       class="inscription"
+                                    ><?=
+                                        esc_html($lien['title']); ?>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    <?php endwhile; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </section>
+    <footer>
+        <div class="container-narrow">
+            <?php if (have_rows('footer_lien', 'option')) : ?>
+                <div class="lien-footer">
+                    <?php while (have_rows('footer_lien', 'option')) : the_row();
+                        $lien_footer = get_sub_field('lien');
+                        ?>
+                        <a href="<?= esc_url($lien_footer['url']); ?>"><?= esc_html($lien_footer['title']); ?></a>
+                    <?php endwhile; ?>
+                </div>
+            <?php endif; ?>
+            <p class="realiser">Réalisation: <a href="https://www.btg-communication.fr" target="_blank">Btg
+                    Communication</a></p>
+            <p class="credit">&copy; Crédit Agricole</p>
+        </div>
+    </footer>
 
     <script>
         const { createApp } = Vue;
@@ -73,24 +132,25 @@
             data () {
                 return {
                     data: null,
-                    slots: null
+                    formField: null,
+                    switchBtn: false
                 }
             },
             mounted () {
                 this.data = <?php echo json_encode($id_array); ?>;
-
             },
             methods: {
-                showExpert(e) {
-                    const experts = document.querySelectorAll('.expert');
-                    experts.forEach(expert => {
-                        expert.classList.remove('active');
-                        if( expert.classList.contains(e.target.value) ) {
-                            expert.classList.add('active')
-                            this.slots = document.querySelectorAll('.availableslot > a');
-                            this.slots = this.slots.forEach( slot => slot.textContent = slot.textContent.slice(0,2) + 'h' )
+                showExpert ( e ) {
+                    const experts = document.querySelectorAll( '.expert' );
+                    experts.forEach( expert => {
+                        expert.classList.remove( 'active' );
+                        if ( expert.classList.contains( e.target.value ) ) {
+                            expert.classList.add( 'active' )
                         }
-                    })
+                    } )
+                },
+                handleSwitchBtn () {
+                    this.switchBtn = !this.switchBtn;
                 }
             }
         } ).mount( '#root' )

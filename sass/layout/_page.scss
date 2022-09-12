@@ -1,0 +1,21 @@
+@use '../abstracts' as var;
+
+.page .container-narrow {
+  max-width: 95%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (min-width: 1200px) {
+    max-width: 75%;
+  }
+
+  h1 {
+    background: transparent;
+    color: var.$green_500;
+    font-size: 2.9rem;
+    text-align: center;
+  }
+}
