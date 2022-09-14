@@ -11,7 +11,7 @@
 
     <header>
         <div class="logo">
-            <img src="<?= get_template_directory_uri(); ?>/assets/logo.png" alt="Logo du crédit agricole">
+            <img src="<?= get_template_directory_uri(); ?>/assets/logo-catp.svg" alt="Logo du crédit agricole">
         </div>
             <div class="titles">
                 <h1><?php the_title(); ?></h1>

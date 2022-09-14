@@ -16,6 +16,16 @@
 
   .left {
     max-width: 924px;
+
+    @media screen and (min-width: 1200px) {
+      height: 652px;
+
+      img {
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
   }
 
   .right {
@@ -152,6 +162,8 @@
       text-align: center;
       display: block;
       text-transform: uppercase;
+      padding: 0;
+      margin: 0;
 
       &::after {
         display: block;
@@ -212,9 +224,9 @@
   .arrow-btn {
     width: 0;
     height: 0;
-    border-left: 14px solid transparent;
-    border-right: 14px solid transparent;
-    border-top: 11px solid var.$green_500;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid var.$green_500;
     margin: auto;
   }
 }
@@ -226,6 +238,10 @@ select {
   background: white;
   border: none;
   border-radius: 10px;
+  font-family: var.$gotham_bold;
+  font-weight: 700 !important;
+  font-size: 2rem;
+  color: var.$green_500;
 }
 
 .experts {
@@ -327,7 +343,7 @@ select {
     font-size: 2.3rem;
     font-weight: var.$light;
     text-align: center;
-    margin-bottom: 3.9rem;
+    margin-bottom: 0.8rem;
   }
 
   p {
@@ -709,8 +725,19 @@ select {
 }
 
 #root .bc-col {
-  height: 57px !important;
-  width: 57px !important;
+  min-height: 57px !important;
+  min-width: 57px !important;
+}
+
+#root .bc-col.currentDateActive {
+  background: var.$green_300 !important;
+  font-family: var.$gotham_bold;
+  font-weight: 700;
+  color: white;
+  border: none;
+  text-align: center;
+  padding: 1rem !important;
+  cursor: pointer;
 }
 
 #root .entryBlock > div:nth-child(1) {
@@ -724,5 +751,17 @@ select {
 
 body div.booked-calendar-wrap div.booked-calendar .bc-head .bc-row.days {
   justify-content: space-between;
+}
+
+body div.booked-calendar-wrap div.booked-calendar .bc-body .bc-row.week .bc-col ::before {
+  display: none !important
+}
+
+.remove {
+  display: none !important;
+}
+
+.currentDateActive {
+  padding: 1rem;
 }
 

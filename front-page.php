@@ -1,5 +1,6 @@
 <?php get_header();
 $id_array = array();
+$day = get_field('jour', 'option')
 ?>
 
 <main class="front-page" id="root">
@@ -41,7 +42,7 @@ $id_array = array();
         <?php $args = array(
             'post_type' => 'post',
             'posts_per_page' => -1,
-            'order' => 'DESC'
+            'order' => 'ASC'
         );
 
         $query = new WP_Query($args);
@@ -132,10 +133,16 @@ $id_array = array();
                     data: null,
                     formField: null,
                     switchBtn: false,
+                    dates: null,
+                    day: null,
                 }
             },
             mounted () {
                 this.data = <?php echo json_encode($id_array); ?>;
+                this.day = <?= json_encode($day); ?>
+                this.data.sort( (a, b) => {
+                    return ( a.pays.toUpperCase() < b.pays.toUpperCase() ) ? -1 : ( a.pays.toUpperCase() > b.pays.toUpperCase() ) ? 1 : 0;
+                });
             },
             methods: {
                 showExpert ( e ) {
@@ -144,6 +151,16 @@ $id_array = array();
                         expert.classList.remove( 'active' );
                         if ( expert.classList.contains( e.target.value ) ) {
                             expert.classList.add( 'active' )
+                            this.dates = document.querySelectorAll( '.bc-col' );
+                            this.dates.forEach( date => {
+                                if ( date.dataset.date === `2022-10-${this.day}` ) {
+                                    console.log( date );
+                                    date.textContent = "Reservez votre rendez-vous"
+                                    date.classList.add('currentDateActive')
+                                } else {
+                                    date.classList.add( 'remove' );
+                                }
+                            } )
                         }
                     } )
                 },

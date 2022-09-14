@@ -31,7 +31,7 @@ footer .container-narrow {
     gap: 1em;
 
     @media screen and (min-width: 1200px) {
-      flex-direction: row;
+      flex-direction: row !important;
       justify-content: space-between;
       width: 60%;
     }
