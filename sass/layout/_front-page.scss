@@ -156,7 +156,7 @@
     }
 
     h2 {
-      font-size: 2.9rem;
+      font-size: 2.6rem;
       font-family: var.$gotham_bold;
       font-weight: 700;
       text-align: center;
@@ -717,7 +717,7 @@ select {
 }
 
 #root .booked-calendar-wrap {
-  height: fit-content;
+  height: fit-content !important;
 }
 
 #root .booked-appt-list > h2:nth-child(1) {
@@ -765,3 +765,17 @@ body div.booked-calendar-wrap div.booked-calendar .bc-body .bc-row.week .bc-col 
   padding: 1rem;
 }
 
+div.expert:nth-child(1) > div:nth-child(2) > div:nth-child(3) > div:nth-child(1) {
+  height: fit-content !important;
+}
+
+div.field:nth-child(4) {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.8em !important;
+  margin: 0 !important;
+}
+
+div.field:nth-child(4) > input:nth-child(1) {
+  width: 100% !important;
+}

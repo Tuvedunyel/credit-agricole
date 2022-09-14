@@ -1,6 +1,8 @@
 <?php get_header();
 $id_array = array();
-$day = get_field('jour', 'option')
+$day = get_field('jour', 'option') ? get_field('jour', 'option') : '12';
+$month = get_field('mois', 'option') ? get_field('mois', 'option') : '10';
+$year = get_field('annee', 'option') ? get_field('annee', 'option') : '2022';
 ?>
 
 <main class="front-page" id="root">
@@ -135,11 +137,15 @@ $day = get_field('jour', 'option')
                     switchBtn: false,
                     dates: null,
                     day: null,
+                    month: null,
+                    year: null,
                 }
             },
             mounted () {
                 this.data = <?php echo json_encode($id_array); ?>;
-                this.day = <?= json_encode($day); ?>
+                this.day = <?= json_encode($day); ?>;
+                this.month = <?= json_encode($month); ?>;
+                this.year = <?= json_encode($year); ?>;
                 this.data.sort( (a, b) => {
                     return ( a.pays.toUpperCase() < b.pays.toUpperCase() ) ? -1 : ( a.pays.toUpperCase() > b.pays.toUpperCase() ) ? 1 : 0;
                 });
@@ -153,8 +159,8 @@ $day = get_field('jour', 'option')
                             expert.classList.add( 'active' )
                             this.dates = document.querySelectorAll( '.bc-col' );
                             this.dates.forEach( date => {
-                                if ( date.dataset.date === `2022-10-${this.day}` ) {
-                                    console.log( date );
+                                if ( date.dataset.date === `${this.year}-${this.month}-${this.day}` ) {
+                                    console.log( date.dataset.date );
                                     date.textContent = "Reservez votre rendez-vous"
                                     date.classList.add('currentDateActive')
                                 } else {

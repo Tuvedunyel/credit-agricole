@@ -26,8 +26,15 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 141px;
   @media screen and (min-width: 1224px) {
     width: calc(190px + 44px * 2);
+
+    img {
+      max-width: 190px;
+      height: 100px;
+      width: auto;
+    }
   }
 }
 
