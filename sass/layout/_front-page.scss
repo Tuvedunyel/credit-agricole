@@ -141,12 +141,17 @@
       width: 50%;
     }
 
+    .booked-appt-list shown h2 {
+      font-size: 2rem;
+    }
+
     h2 {
       font-size: 2.9rem;
       font-family: var.$gotham_bold;
       font-weight: 700;
       text-align: center;
       display: block;
+      text-transform: uppercase;
 
       &::after {
         display: block;
@@ -281,15 +286,25 @@ select {
 }
 
 .expert {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 0;
   text-align: center;
+  height: 1px;
+  width: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
 
   &.active {
-    display: flex;
+    font-size: 2rem;
+    height: auto;
+    width: auto;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
   }
 
   h2 {
@@ -325,6 +340,12 @@ select {
   height: 242px;
   margin-bottom: 2.5rem;
   display: block;
+
+  &.photo-expert img {
+    border-radius: 50%;
+    width: 242px;
+    height: 242px;
+  }
 }
 
 .fields {
@@ -477,7 +498,7 @@ select {
   display: inline-block !important;
 }
 
-#form-perso{
+#form-perso {
   width: 100%;
   background: white;
   padding: 4.2rem 7.9rem;
@@ -650,5 +671,58 @@ select {
       color: var.$green_500;
     }
   }
+}
+
+#fbuilder .pbreak {
+  @media screen and (min-width: 800px) {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-items: center;
+    gap: 1em;
+
+    .fields:first-of-type {
+      grid-column: 1 / 3;
+      grid-row: 1;
+    }
+
+    .pbSubmit {
+      grid-column: 1 / 3;
+    }
+  }
+}
+
+.availableslot a.disabled {
+  display: none !important;
+}
+
+.entryBlock {
+  max-height: fit-content;
+}
+
+#root .booked-calendar-wrap {
+  height: fit-content;
+}
+
+#root .booked-appt-list > h2:nth-child(1) {
+  font-size: 2rem;
+}
+
+#root .bc-col {
+  height: 57px !important;
+  width: 57px !important;
+}
+
+#root .entryBlock > div:nth-child(1) {
+  height: fit-content !important;
+  width: fit-content !important;
+}
+
+#root .bc-row.top .bc-col {
+  width: 100% !important;
+}
+
+body div.booked-calendar-wrap div.booked-calendar .bc-head .bc-row.days {
+  justify-content: space-between;
 }
 

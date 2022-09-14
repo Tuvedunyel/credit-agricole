@@ -26,7 +26,7 @@ $id_array = array();
     </section>
     <section class="expertpays">
         <div class="container-narrow">
-            <h2>Je prends rendez-vous avec un expert pays</h2>
+            <h2>Je prends rendez-vous avec un expert pays pour <?= get_field('date', 'option'); ?></h2>
             <img src="<?= get_template_directory_uri() ?>/assets/pin.svg" alt="Pin de géolicalisation" class="pin">
             <div class="select-container">
                 <select name="zone" id="zone" @change="showExpert">
@@ -40,6 +40,7 @@ $id_array = array();
         </div>
         <?php $args = array(
             'post_type' => 'post',
+            'posts_per_page' => -1,
             'order' => 'DESC'
         );
 
@@ -53,15 +54,12 @@ $id_array = array();
                     $data->pays = get_field('pays');
                     array_push($id_array, $data) ?>
                     <div class="expert <?= get_the_ID(); ?>">
-                        <div class="thumbnail">
+                        <div class="thumbnail photo-expert">
                             <?php the_post_thumbnail('full'); ?>
                         </div>
                         <div :class=" switchBtn ?  'content active' : 'content' ">
                             <h2><?php the_title(); ?></h2>
                             <?php the_content(); ?>
-                            <button class="pbSubmit perso-btn" @click="handleSwitchBtn()">Réserver mon
-                                entretien
-                            </button>
                         </div>
                     </div>
                 <?php endwhile; ?>
@@ -133,7 +131,7 @@ $id_array = array();
                 return {
                     data: null,
                     formField: null,
-                    switchBtn: false
+                    switchBtn: false,
                 }
             },
             mounted () {
