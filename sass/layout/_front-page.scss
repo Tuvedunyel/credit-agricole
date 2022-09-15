@@ -608,6 +608,7 @@ select {
     height: 96px;
     text-align: center;
     width: 100%;
+    padding-block: 0.5em;
   }
 
   h3 {
@@ -736,7 +737,9 @@ select {
   color: white;
   border: none;
   text-align: center;
-  padding: 1rem !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 }
 
